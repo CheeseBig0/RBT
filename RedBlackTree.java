@@ -442,13 +442,40 @@ public class RedBlackTree{
   // To receive full credit you must explicitly check for each property! You may not assume anything based on the above implementation (which does ensure all these rules are followed)
   // you may wish to add some helper functions here.
   public boolean isRedBlack() {
+    if(root.color != BLACK) {
+      return false;
+    }
+
+    Node[] checkedNodes = {};
+    
+
 	  return false;
   }
   
+  //this is pretty hard
+  private int countBlack(Node top) {
+    if(top == null) {
+      return 0;
+    }
+
+    int add = 0;
+    if(top.color == BLACK) {
+      add = 1;
+    }
+
+    if(top.left == null)
+    
+    if(countBlack(top.left) + add == countBlack(top.right) + add) {
+      return 1;
+    } else { return 0; }
+    
+  }
+
   
   //This should return a string of comma separated keys that represents the shortest height path through the tree.
   //Perhaps this would be easier to do with some helper functions?
   public String shortestTruePath() {
+
 	  return "";
   }
   
