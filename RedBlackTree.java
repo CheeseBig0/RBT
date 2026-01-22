@@ -437,10 +437,10 @@ public class RedBlackTree{
   // 1 Every node is either red or black. (This is a given since Nodes have a red/black property)
   // 2 The root is black. 
   // 3 Every leaf (nil) is black. (This is a definition so there's nothing to check)
+
+  //(need to implement)
   // 4 If a node is red, then both its children are black.
   // 5 For each node, all paths from the node to descendant leaves contain the same number of black nodes.
-  // To receive full credit you must explicitly check for each property! You may not assume anything based on the above implementation (which does ensure all these rules are followed)
-  // you may wish to add some helper functions here.
   public boolean isRedBlack() {
     if(root.color != BLACK) {
       return false;
@@ -452,24 +452,52 @@ public class RedBlackTree{
 	  return false;
   }
   
-  //this is pretty hard
-  private int countBlack(Node top) {
+  
+  //rule 4
+  private boolean checkProperRed(Node red) {
+    if(red.color == BLACK) {
+      return false;
+    }
+    proper = true;
+
+    if(red.left != null && isBlack(red)) {
+      proper = false;
+    }
+    if(red.right != null && isBlack(red)) {
+      proper = false;
+    }
+
+    return proper;
+  }
+
+
+  //rule 5 (not done)
+  private boolean passesRule5(Node top) {
     if(top == null) {
-      return 0;
+      return false;
     }
-
-    int add = 0;
-    if(top.color == BLACK) {
-      add = 1;
-    }
-
-    if(top.left == null)
     
-    if(countBlack(top.left) + add == countBlack(top.right) + add) {
-      return 1;
-    } else { return 0; }
+    int leftHeight = 0;
+    if(top.left != null) { leftHeight = blackHeight(top.left); }
+    int rightHeight = 0;
+    if(top.right != null) { rightHeight = blackHeight(top.right); }
+
+    return ( passesRule5(top.left) && passesRule5(top.right) );
     
   }
+
+private int blackHeight(Node top) {
+  int add = 0;
+  if(isBlack(top)) {
+    add = 1;
+  }
+
+  if(top.left != null) {
+    return blackHeight(top.left) + add;
+  } else {
+    return blackHeight(top) + add;
+  }
+}
 
   
   //This should return a string of comma separated keys that represents the shortest height path through the tree.
