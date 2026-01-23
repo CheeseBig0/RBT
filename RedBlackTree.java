@@ -398,7 +398,7 @@ public class RedBlackTree{
   private void printTree(Node root, Trunk prev, boolean isLeft)
   {
       if (root == null) {
-    	  System.out.println(" " + "NIL "+"B");
+    	  //lol dont need tihs System.out.println(" " + "NIL "+"B");
           return;
       }
 
@@ -445,36 +445,39 @@ public class RedBlackTree{
     if(root.color != BLACK) {
       return false;
     }
-
-    Node[] checkedNodes = {};
     
+    boolean rule4 = passesRule4(root);
+    boolean rule5 = passesRule5(root);
 
-	  return false;
+    System.out.println("Passes rule 4? " + rule4);
+    System.out.println("Passes rule 5? " + rule5);
+
+	  return (rule4 && rule5);
   }
   
   
   //rule 4
-  private boolean checkProperRed(Node red) {
+  private boolean passesRule4(Node red) {
     if(red.color == BLACK) {
-      return false;
+      return true;
     }
-    proper = true;
+    boolean isProper = true;
 
     if(red.left != null && isBlack(red)) {
-      proper = false;
+      isProper = false;
     }
     if(red.right != null && isBlack(red)) {
-      proper = false;
+      isProper = false;
     }
 
-    return proper;
+    return (isProper && passesRule4(red.left) && passesRule4(red.right));
   }
 
 
   //rule 5 (not done)
   private boolean passesRule5(Node top) {
     if(top == null) {
-      return false;
+      return true;
     }
     
     int leftHeight = 0;
@@ -482,21 +485,26 @@ public class RedBlackTree{
     int rightHeight = 0;
     if(top.right != null) { rightHeight = blackHeight(top.right); }
 
-    return ( passesRule5(top.left) && passesRule5(top.right) );
+    //System.out.print("Left height: " + leftHeight + "  ");
+    //System.out.println("Right height: " + rightHeight);
+
+    boolean amBalanced = (leftHeight == rightHeight);
+    return ( amBalanced && passesRule5(top.left) && passesRule5(top.right) );
     
   }
 
 private int blackHeight(Node top) {
+  if(top == null) {
+    return 0;
+  }
+  
   int add = 0;
   if(isBlack(top)) {
     add = 1;
   }
 
-  if(top.left != null) {
-    return blackHeight(top.left) + add;
-  } else {
-    return blackHeight(top) + add;
-  }
+  return blackHeight(top.left) + add;
+  
 }
 
   
