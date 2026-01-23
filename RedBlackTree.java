@@ -511,8 +511,32 @@ private int blackHeight(Node top) {
   //This should return a string of comma separated keys that represents the shortest height path through the tree.
   //Perhaps this would be easier to do with some helper functions?
   public String shortestTruePath() {
+    return path(root);
+  }
 
-	  return "";
+  private String path(Node top) {
+    if(top == null) {
+      return "";
+    }
+
+    Node smallerNode;
+    if(height(top.left) < height(top.right)) {
+      smallerNode = top.left;
+    } else {
+      smallerNode = top.right;
+    }
+    
+    return String.valueOf(top.key) + ", " + path(smallerNode);
+  }
+
+  private int height(Node top) {
+    if(top == null) {
+      return 0;
+    }
+    int lheight = height(top.left);
+    int rheight = height(top.right);
+
+    return (Math.max(lheight, rheight));
   }
   
   //This returns the absolute value of the difference between the real height of the tree and its black height. 

@@ -19,5 +19,7 @@ public class main {
 		RBTree.printTree();
 		System.out.println("Is red black tree? " + RBTree.isRedBlack());
 
+		System.out.println("Smallest path: " + RBTree.shortestTruePath());
+
 	}
 }
