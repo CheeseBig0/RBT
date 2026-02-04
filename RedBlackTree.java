@@ -541,7 +541,7 @@ private int blackHeight(Node top) {
   
   //This returns the absolute value of the difference between the real height of the tree and its black height. 
   public int trueHeightDiff(){
-	  return 0;
+	  return height(root) - blackHeight(root);
   }
 }
 

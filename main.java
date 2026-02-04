@@ -21,5 +21,7 @@ public class main {
 
 		System.out.println("Smallest path: " + RBTree.shortestTruePath());
 
+		System.out.println("Difference between heights: " + RBTree.trueHeightDiff());
+
 	}
 }
