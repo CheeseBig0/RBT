@@ -474,7 +474,7 @@ public class RedBlackTree{
   }
 
 
-  //rule 5 (not done)
+  //rule 5
   private boolean passesRule5(Node top) {
     if(top == null) {
       return true;
@@ -493,6 +493,7 @@ public class RedBlackTree{
     
   }
 
+//counts each black through each the left child
 private int blackHeight(Node top) {
   if(top == null) {
     return 0;
@@ -514,6 +515,7 @@ private int blackHeight(Node top) {
     return path(root);
   }
 
+  //Checks the height of the nodes children and continues further down the smaller one
   private String path(Node top) {
     if(top == null) {
       return "";
@@ -536,7 +538,7 @@ private int blackHeight(Node top) {
     int lheight = height(top.left);
     int rheight = height(top.right);
 
-    return (Math.max(lheight, rheight));
+    return (Math.max(lheight, rheight) + 1);
   }
   
   //This returns the absolute value of the difference between the real height of the tree and its black height. 
