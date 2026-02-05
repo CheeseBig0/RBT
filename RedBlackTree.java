@@ -456,17 +456,17 @@ public class RedBlackTree{
   }
   
   
-  //rule 4
+  //
   private boolean passesRule4(Node red) {
-    if(red.color == BLACK) {
+    if(isBlack(red)) {
       return true;
     }
     boolean isProper = true;
 
-    if(red.left != null && isBlack(red)) {
+    if(red.left != null && !isBlack(red.left)) {
       isProper = false;
     }
-    if(red.right != null && isBlack(red)) {
+    if(red.right != null && !isBlack(red.right)) {
       isProper = false;
     }
 
