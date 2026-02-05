@@ -456,7 +456,7 @@ public class RedBlackTree{
   }
   
   
-  //
+  //checks the children of the node, if one of them are not black then return false and do this recursively
   private boolean passesRule4(Node red) {
     if(isBlack(red)) {
       return true;
@@ -475,6 +475,7 @@ public class RedBlackTree{
 
 
   //rule 5
+  //compare the black height of each child and do this recursively
   private boolean passesRule5(Node top) {
     if(top == null) {
       return true;
